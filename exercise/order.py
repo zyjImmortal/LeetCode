@@ -61,7 +61,7 @@ def quick_sort(sequence):
     if len(sequence) < 2:
         return sequence
     else:
-        pivor = sequence[0]  # 给定基准值
+        pivor = sequence[2]  # 给定基准值
         pivor_left = [i for i in sequence if i < pivor]  # 将小于基准值的放到基准值的左边，新建一个列表
         pivor_right = [i for i in sequence if i > pivor]  # 将大于基准值的放到基准值的右边，新建列表
         return quick_sort(pivor_left) + [pivor] + quick_sort(pivor_right)
@@ -83,6 +83,22 @@ def max_value(sequence):
         return sequence[0] if sequence[0] > max_value(sequence[1:]) else max_value(sequence[1:])
 
 
+def bubble_sort(sequence):
+    """
+    冒泡排序：按照列表中待排序的先后顺序，依次比较相邻的两个数，
+             若两者是升序则不做任何操作，否则交换两者位置
+    时间复杂度：O(n2)
+    """
+    for i in range(len(sequence) -1):
+        for j in range(len(sequence) - i - 1):
+            if sequence[j] > sequence[j+1]:
+                temp = sequence[j]
+                sequence[j] = sequence[j+1]
+                sequence[j+1] = temp
+    return sequence
+
+
+
 if __name__ == '__main__':
     sequence = [1, 4, 6, -1, 6, 0, 23, 5, 6, 1]
-    print(max_value(sequence))
+    print(quick_sort(sequence))
