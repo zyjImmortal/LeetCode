@@ -42,8 +42,13 @@ class Solution:
         """
         pass
 
-    def merge(self, nums1, m, nums2, n):
+    def merge(self, nums1, nums2):
         """
+        给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。
+
+        说明:
+            初始化 nums1 和 nums2 的元素数量分别为 m 和 n。
+            你可以假设 nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素。
         :type nums1: List[int]
         :type m: int
         :type nums2: List[int]
@@ -53,7 +58,7 @@ class Solution:
         # temp = list(filter(lambda x: x != 0, nums1))
         nums_temp = []
         i, j = 0, 0
-        while i < m and j < n:
+        while i < len(nums1) and j < len(nums2):
             if nums1[i] < nums2[j]:
                 nums_temp.append(nums1[i])
                 i += 1
@@ -67,4 +72,4 @@ class Solution:
 
 if __name__ == '__main__':
     solution = Solution()
-    print(solution.merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3))
+    print(solution.merge([3], [-1,1,1,1,2,3]))

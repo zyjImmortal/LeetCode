@@ -79,6 +79,7 @@ class Solution:
         :type n: int
         :rtype: int
         """
+        ord()
         return int(-1 + math.sqrt(1 + 8 * n)) // 2
 
 
