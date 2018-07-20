@@ -138,11 +138,54 @@ class Solution:
 
     def buddyStrings(self, A, B):
         """
+        给定两个由小写字母构成的字符串 A 和 B ，只要我们可以通过交换 A 中的两个字母得到与 B 相等的结果，就返回 true ；否则返回 false
         :type A: str
         :type B: str
         :rtype: bool
+        思路：
+            把对应位置不相等的元素抽取出来，组成一个元组，放到列表中，如果可以反转，那么列表的长度一定为2，然后取出元素
+        """
+        if len(A) != len(B):
+            return False
+        a = []
+        if A == B:
+            for s in A:
+                if s in a:
+                    return True
+                a.append(s)
+        a.clear()
+        for i, j in zip(A, B):
+            if i != j:
+                a.append((i, j))
+            if len(a) >= 3:return False
+        return len(a) == 2 and a[0] == a[1][::-1]
+
+    def firstUniqChar(self, s):
+        """
+
+        给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。
+        :type s: str
+        :rtype: int
+        """
+        for i in range(len(s)):
+            if s[i] not in s[i+1:]:
+                return i
+        return -1
+
+    def reverseStr(self, s, k):
+        """
+        给定一个字符串和一个整数 k，你需要对从字符串开头算起的每个 2k 个字符的前k个字符进行反转。如果剩余少于 k 个字符，
+        则将剩余的所有全部反转。如果有小于 2k 但大于或等于 k 个字符，则反转前 k 个字符，并将剩余的字符保持原样。
+        示例：
+            输入: s = "abcdefg", k = 3
+            输出: "bacdfegfasfag"
+        :type s: str
+        :type k: int
+        :rtype: str
         """
 
 
+
+
 solution = Solution()
-print(solution.repeatedSubstringPatternV2("aafaaf"))
+print(solution.firstUniqChar("cc"))
