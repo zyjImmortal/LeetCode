@@ -144,6 +144,7 @@ class Solution:
         :rtype: bool
         思路：
             把对应位置不相等的元素抽取出来，组成一个元组，放到列表中，如果可以反转，那么列表的长度一定为2，然后取出元素
+            根据条件可以判断：A与B长度相等，且不相等只有两组一一对应的元素不相等
         """
         if len(A) != len(B):
             return False
@@ -157,7 +158,7 @@ class Solution:
         for i, j in zip(A, B):
             if i != j:
                 a.append((i, j))
-            if len(a) >= 3:return False
+            if len(a) >= 3: return False
         return len(a) == 2 and a[0] == a[1][::-1]
 
     def firstUniqChar(self, s):
@@ -168,9 +169,12 @@ class Solution:
         :rtype: int
         """
         for i in range(len(s)):
-            if s[i] not in s[i+1:]:
+            if s[i] not in s[i + 1:]:
                 return i
         return -1
+
+    # def firstUniqChar(self, s):
+    #     return i for i in range(len(s)) if s[i] not in s[i+1:] else -1
 
     def reverseStr(self, s, k):
         """
@@ -183,9 +187,20 @@ class Solution:
         :type k: int
         :rtype: str
         """
+        pass
 
-
+    def reverseWords(self, s):
+        """
+        给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序
+        :type s: str
+        :rtype: str
+        """
+        # result = []
+        # for word in s.split(' '):
+        #     result.append(word[::-1])
+        # return ' '.join(result)
+        return ' '.join(s[::-1].split()[::-1])
 
 
 solution = Solution()
-print(solution.firstUniqChar("cc"))
+print(solution.reverseWords("Let's take LeetCode contest"))
