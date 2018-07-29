@@ -82,6 +82,10 @@ class Solution:
         ord()
         return int(-1 + math.sqrt(1 + 8 * n)) // 2
 
+    def repeat(self, nums):
+        import collections
+
+
 
 solution = Solution()
 print(solution.arrangeCoinsV2(8))
