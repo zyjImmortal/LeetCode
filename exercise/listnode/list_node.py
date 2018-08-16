@@ -47,28 +47,6 @@ class Solution:
             cur = cur.next
         return dummy.next
 
-    def mergeTwoLists(self, l1, l2):
-        """
-        :type l1: ListNode
-        :type l2: ListNode
-        :rtype: ListNode
-        """
-        temp = ListNode(0)
-        pointer = temp
-        while l1 is not None and l2 is not None:
-            if l1.val < l2.val:
-                pointer.next = l1
-                l1 = l1.next
-            else:
-                pointer.next = l2
-                l2 = l2.next
-            pointer = pointer.next
-        if l1 is not None:
-            pointer.next = l1
-        if l2 is not None:
-            pointer.next = l2
-        return temp.next
-
     def reverseList(self, head):
         """
         链表反转
@@ -101,15 +79,54 @@ class Solution:
             cur = cur.next
         return head
 
+    def mergeTwoLists(self, l1, l2):
+        """
+        合并两个有序列表
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        temp = ListNode(0)
+        pointer = temp
+        while l1 is not None and l2 is not None:
+            if l1.val < l2.val:
+                pointer.next = l1
+                l1 = l1.next
+            else:
+                pointer.next = l2
+                l2 = l2.next
+            pointer = pointer.next
+        if l1 is not None:
+            pointer.next = l1
+        if l2 is not None:
+            pointer.next = l2
+        return temp.next
+
+    def getMiddle(self, head):
+        """
+        快慢指针找出中间节点
+        :param head:
+        :return:
+        """
+        if head is None:
+            return head
+        fast = slow = head
+        while slow.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+
     def sortList(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
         """
-        result = ListNode(0)
-        cur = head.next
-        while cur.next:
-            pass
+        if head is None or head.next is None:
+            return head
+        mid = self.getMiddle(head)
+        rhead = mid.next
+        mid.next = None
+        return self.mergeTwoLists(self.sortList(head), self.sortList(rhead))
 
 
 class MyLinkedList:
@@ -227,6 +244,7 @@ class LList:
         e = p.next.elem
         p.next = None
         return e
+
 
 # Your MyLinkedList object will be instantiated and called as such:
 # obj = MyLinkedList()

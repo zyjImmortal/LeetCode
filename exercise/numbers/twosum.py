@@ -66,4 +66,4 @@ class Solution:
 
 if __name__ == '__main__':
     solution = Solution()
-    print(solution.generate_v2(4))
+    print(solution.generate_v2(8))

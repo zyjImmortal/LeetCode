@@ -69,16 +69,17 @@ class Solution:
         s = str(x)
         if s[0] == '-':
             for i in range(len(s) - 1):
-                count = count * 10 + int(s[-1-i])
+                count = count * 10 + int(s[-1 - i])
             if count > 2 ** 31:
                 return 0
             return -count
         else:
             for i in range(len(s)):
-                count = count * 10 + int(s[-1-i])
+                count = count * 10 + int(s[-1 - i])
             if count > 2 ** 31:
                 return 0
             return count
+
 
 if __name__ == '__main__':
     print(Solution.reverse_v3(-55345))

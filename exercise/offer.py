@@ -86,7 +86,31 @@ class Solution:
         :type n: int
         :rtype: ListNode
         """
+        if head is None:
+            return head
+        result = [head]
+        while head:
+            result.append(head.next)
+            head = head.next
+        if len(result) == 1:
+            return result[0]
+        result[-n - 1].next = result[-n + 1]
+        for i in range(len(result) - 1):
+            result[i].next = result[i + 1]
+        return result[0]
 
+    def reOrderArray(self, array):
+        return [i for i in array if i % 2 != 0] + [i for i in array if i % 2 == 0]
+
+    def findGreatestSuOfSumArray(self, array):
+        if len(array) == 0:
+            return 0
+        res = max(array)
+        temp = 0
+        for i in array:
+            temp = max(res, i+temp)
+            res = max(temp, res)
+        return res
 
 
 if __name__ == '__main__':

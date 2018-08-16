@@ -69,7 +69,16 @@ class Solution:
         nums_temp += nums2[j:]
         return nums_temp
 
+    def sortList(self, seq):
+        """归并排序nlogn时间复杂度，空间复杂度常数级"""
+        if len(seq) <= 1:
+            return seq
+        mid = int(len(seq) / 2)
+        left = self.sortList(seq[:mid])
+        right = self.sortList(seq[mid:])
+        return self.merge(left, right)
+
 
 if __name__ == '__main__':
     solution = Solution()
-    print(solution.merge([3], [-1,1,1,1,2,3]))
+    print(solution.sortList([-1, 4, 5, 2, 9, 1, 1, 1, 2, 3]))

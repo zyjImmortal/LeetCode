@@ -201,6 +201,20 @@ class Solution:
         # return ' '.join(result)
         return ' '.join(s[::-1].split()[::-1])
 
+    def remove_diff(self, str1, str2):
+        return ''.join(list(filter(lambda x: x not in str2, str1)))
+
+    def findUSlength(self, a, b):
+        len_a = len(a)
+        len_b = len(b)
+        if len_a != len_b:
+            return max(len_a, len_b)
+        else:
+            if a == b:
+                return -1
+            else:
+                return len_a
+
 
 solution = Solution()
-print(solution.reverseWords("Let's take LeetCode contest"))
+print(solution.removeStr1FromStr2("They are students.", "aeiou"))
